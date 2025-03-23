@@ -18,6 +18,7 @@ export default function Form ({children, onsubmit}: FormProps ) {
 const Input = ({classname, placeholder, text, value, onchange}: InputProps) => {
     return (
         <input 
+        onSubmit={(e) => {e.preventDefault()}}
         className={classname} 
         type={text} 
         placeholder={placeholder}

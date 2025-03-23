@@ -1,7 +1,7 @@
 interface RadioButtonProps {
     checked: boolean;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    classname: string;
+    classname?: string;
     text:any;
 }
 
@@ -16,7 +16,7 @@ const RadioButton = (props:{children: React.ReactNode}) => {
 };
 
 
-const Body = ({checked, onChange, classname, text}: RadioButtonProps) => {
+const Body = ({checked, onChange, classname="hidden peer", text}: RadioButtonProps) => {
     return(
         <label className="flex items-center space-x-2 cursor-pointer">
           <input
@@ -26,10 +26,10 @@ const Body = ({checked, onChange, classname, text}: RadioButtonProps) => {
             onChange={onChange}
             className={classname}
           />
-          {/* <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:bg-blue-500">
+          <div className="w-5 h-5 border-2 border-gray-400 rounded-full flex items-center justify-center peer-checked:border-blue-500">
             <div className="w-3 h-3 bg-blue-500 rounded-full peer-checked:block hidden"></div>
-          </div> */}
-          <span className="text-gray-700">{text}</span>
+          </div>
+          <span className="text-gray-700 peer-checked:text-blue-500">{text}</span>
         </label>
     )
 }

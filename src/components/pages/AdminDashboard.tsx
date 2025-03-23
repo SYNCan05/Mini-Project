@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "../elements/Button";
-import CartProduct from "./CartProduct";
+import CartProduct from "../layouts/CartProduct";
 
 interface pesan {
     id: number,
@@ -10,7 +10,7 @@ interface pesan {
 }
 export const AdminDashboard = () => {
     const [pesan, setPesan] = useState<pesan[]>([]);
-    const [pesanan, setPesanan] = useState<pesan[]>([]);
+    // const [pesanan, setPesanan] = useState<pesan[]>([]);
     
     const name = localStorage.getItem("name");
 
@@ -42,12 +42,12 @@ export const AdminDashboard = () => {
         window.location.href = "/loginadmin";
     }
 
-    const getAllSessionStorageData = () => {
-        return Object.keys(sessionStorage).map((key) => ({
-          key,
-          value: sessionStorage.getItem(key),
-        }));
-      };
+    // const getAllSessionStorageData = () => {
+    //     return Object.keys(sessionStorage).map((key) => ({
+    //       key,
+    //       value: sessionStorage.getItem(key),
+    //     }));
+    //   };
       
       
 
