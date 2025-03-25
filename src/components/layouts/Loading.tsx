@@ -2,7 +2,7 @@ import Card from "./Card"
 import Button from "../elements/Button"
 export default function Loading (){
     return(
-        <div className="w-[80%] m-auto justify-between">
+        <div className=" w-[80%] m-auto ">
             <div className="w-[50%] flex flex-wrap max-md:w-full h-auto animate-pulse gap-1">
             <Card >
               <Card.Header>
@@ -15,7 +15,7 @@ export default function Loading (){
               />
               <Button
                 onClick={() => {}}
-                classname="bg-slate-300 w-20 h-10 rounded"
+                classname="bg-slate-300 w-15 h-7 rounded"
               >
                 <p></p>
               </Button>

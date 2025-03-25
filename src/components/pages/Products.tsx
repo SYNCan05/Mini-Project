@@ -45,7 +45,7 @@ const Products = () => {
   const handleUploadCart = () => {
     const dataCart = cart
       .map((item) => {
-        const product = data.find((product) => product.id === item.id);
+        const product = cart.find((product) => product.id === item.id);
         return product
           ? {
               id: item.id,
@@ -103,7 +103,8 @@ const Products = () => {
   return (
     <>
     {/* NAVBAR */}
-    <div className="flex w-[80%] mx-auto items-center justify-between sticky top-0 bg-white z-10 py-5">
+    <div className="w-full backdrop-blur-md sticky top-0 z-10">
+    <div className="flex w-[80%] mx-auto items-center justify-between  py-5">
       <Form.Input
         text="text"
         placeholder="Search..."
@@ -119,6 +120,7 @@ const Products = () => {
           <RadioButton.Body  checked={category === "Pastries"} onChange={(e) => setCategory(e.target.value)}  text="Pastries"/>
           <RadioButton.Body  checked={category === "Desserts"} onChange={(e) => setCategory(e.target.value)}  text="Desserts"/>
         </RadioButton>
+      </div>
       </div>
 
       {isLoading && (
@@ -169,10 +171,22 @@ const Products = () => {
                   key={item.id}
                   title={product.name}
                   price={`$ ${product.price}`}
-                  quantity={item.quantity}
-                  tambah={() => handleIncrement(item.id)}
-                  kurang={() => handleDecrement(item.id)}
                 >
+                  <td className="p-3 ">
+                    <Button
+                      classname="bg-blue-600 hover:bg-blue-500 text-white w-[20px] hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
+                      onClick={() => handleDecrement(item.id)}
+                    >
+                      -
+                    </Button>
+                    {item.quantity}
+                    <Button
+                      classname="bg-blue-600 hover:bg-blue-500 text-white w-[20px] hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
+                      onClick={() => handleIncrement(item.id)}
+                    >
+                      +
+                    </Button>
+                  </td>
                   <Button
                   classname="bg-red-600  hover:bg-red-500 text-white py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
                   onClick={() => setCart(cart.filter((cartItem) => cartItem.id !== item.id))}

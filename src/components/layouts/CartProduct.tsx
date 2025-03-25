@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import Button from "../elements/Button"
+// import Button from "../elements/Button"
 
 interface Props {
     children?: ReactNode,
@@ -29,18 +29,13 @@ const Header = (props:{text:string}) => {
     )
 }
 
-const Body = (props:{title:string, price:string | number, quantity:number, key:number | string, children?: ReactNode, kurang: () => void, tambah: () => void}) => {
+const Body = (props:{title:string, price:string | number, key:number | string, children?: ReactNode}) => {
     return (
         <tbody>
-            <tr className="bg-gray-200 border-b">
+            <tr className="border-b">
                 <td className="p-3">{props.title}</td>
                 <td className="p-3">{props.price}</td>
-                <td className="p-3 flex justify-evenly ">
-                    <Button classname="bg-blue-500 hover:bg-blue-700 hover:cursor-pointer text-white font-bold w-[20px] rounded" type="button" onClick={props.kurang}>-</Button>
-                    {props.quantity}
-                    <Button classname="bg-blue-500 hover:bg-blue-700 hover:cursor-pointer text-white font-bold w-[20px] rounded" type="button" onClick={props.tambah}>+</Button>
-                </td>
-                <td>{props.children}</td>
+                {props.children}
             </tr>
         </tbody>
     )
