@@ -23,6 +23,7 @@ const Products = () => {
   const [query, setQuery] = useState("");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [name, setName] = useState<string>("");
+  const [meja, setMeja] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const {handleSearch, isLoading, error} = SearchProduct();
   
@@ -59,9 +60,14 @@ const Products = () => {
       .filter(Boolean);
       if(name.length > 0){ 
         localStorage.setItem("name", name);
+        localStorage.setItem("meja", meja);
         localStorage.setItem("cart", JSON.stringify(dataCart));
+        setCart([]);
+        setName("");
+        setMeja("");
       }else{
-        alert("Masukan Nama Pemesan");}
+        alert("Masukan Nama Pemesan");
+      }
   };
 
 
@@ -194,20 +200,28 @@ const Products = () => {
                 </CartProduct.Body>
               ) : null; 
             })}
+
+
           </CartProduct>
             <div className={`flex flex-col m-3 ${cart.length <= 0 ? "hidden" : ""} `}>
+              <label htmlFor="name">Nama :</label>
               <input
                 type="text"
                 placeholder="Nama Pemesan"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className={`rounded-md p-2 w-60 max-md:w-full max-md:mb-5 focus:outline-none border-1 border-gray-300 bg-white ${name.length <= 1 ? "border-red-500" : ""} `}
+                />
+                {name.length <= 1 && <span className="text-red-500 text-sm">*Nama harus diisi</span>}
+              <label htmlFor="meja">No.Meja :</label>
+              <input
+                type="number"
+                placeholder="1/2/3/4..."
+                value={meja}
+                required
+                onChange={(e) => setMeja(e.target.value)}
+                className={`rounded-md p-2 w-60 max-md:w-full max-md:mb-5 focus:outline-none border-1 border-gray-300 bg-white`}
                 /> 
-                {name.length <=1 && (
-                  <label className="text-red-700 font-serif ">
-                  * nama harus diisi
-                </label>
-                )}
               </div>
             <Button 
               classname="w-[100px] bg-blue-600 hover:bg-blue-500 text-white py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"

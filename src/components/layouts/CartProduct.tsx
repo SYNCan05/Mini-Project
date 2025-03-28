@@ -18,7 +18,7 @@ export default function CartProduct({children, classname="w-[400px] table-auto b
 
 const Header = (props:{text:string}) => {
     return (
-        <thead className="bg-blue-500 text-white ">
+        <thead className="bg-slate-950 text-white ">
             <tr>
                 <th className="p-3 text-left">Produk</th>
                 <th className="p-3 text-left">Harga</th>

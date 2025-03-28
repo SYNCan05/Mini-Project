@@ -2,7 +2,7 @@ import Button from "../elements/Button";
 import { useState } from "react";
 import { AuthLogin } from "../../service/AuthLogin";
 export default function LoginAdmin() {
-    const { postDataLogin } = AuthLogin();
+    const { postDataLogin} = AuthLogin();
     const [user, setUser] = useState({
         username: "",
         password: ""
@@ -18,15 +18,11 @@ export default function LoginAdmin() {
             sessionStorage.setItem("email", res.user.email);
             window.location.href = "/admindashboard";
         })
-        // window.location.href = "/admindashboard";
-        // if (adminLogin.find((item: adminLogin) => item.username === user.username && item.password === user.password)) {
-        //     sessionStorage.setItem("username", user.username);
-        //     sessionStorage.setItem("password", user.password);
-        //     window.location.href = "/admindashboard";
-        // }else{
-        //     alert("Username atau password salah");
-        // }
+        .catch((err) => {
+            console.log(err.message);
+        })
 
+        
     }
     return (
         <div className="w-full h-screen flex justify-center items-center z-50 absolute top-0 left-0 bg-white">

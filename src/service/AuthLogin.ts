@@ -1,4 +1,3 @@
-
 export const AuthLogin = () => {
     const postDataLogin = async (email: string, password: string) => {
         try{
@@ -14,8 +13,8 @@ export const AuthLogin = () => {
             });
             const data = await response.json();
             return data;
-        } catch (err) {
-            console.log(err);
+        } catch (err: any) {
+            console.log(err.message);
         }
     };
     return { postDataLogin };

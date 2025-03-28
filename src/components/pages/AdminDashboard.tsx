@@ -17,7 +17,7 @@ export const AdminDashboard = () => {
 
     useEffect(() =>{
         const token = sessionStorage.getItem("token");
-        if(!token){
+        if(!token || token === undefined){
             window.location.href = "/auth/login";
         }
     })
@@ -35,7 +35,7 @@ export const AdminDashboard = () => {
     const handleLogout = () => {
         sessionStorage.removeItem("token");
         sessionStorage.removeItem("email");
-        window.location.href = "/loginadmin";
+        window.location.href = "/auth/login";
     }
     
     
@@ -69,6 +69,7 @@ const handlePesanan = () =>{
     if (cart.length > 0) {
         localStorage.removeItem("cart");
         localStorage.removeItem("name");
+        localStorage.removeItem("meja");
         sessionStorage.setItem("cart-" + name , JSON.stringify(cart));
         window.location.reload();
     } else{
@@ -82,15 +83,16 @@ const handleDelete = (key: string) => {
 }
 
     return (
-        <div className="w-full flex flex-col gap-20 justify-center items-center relative py-5">
+        <div className="w-full flex flex-col gap-20 justify-center font-thin items-center relative py-5">
             <div className="absolute top-5 right-5">
                 <Button classname="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded" children="Logout" onClick={handleLogout} />
             </div>
                 <div className="flex flex-col gap-3">
-                <h1 className="text-2xl font-bold">Selamat Datang, {email} </h1>
+                <h1 className="text-2xl font-black ">Selamat Datang, {email}</h1>
                 {pesan.length > 0 ? (
                     <>
-                    <h2 className="text-xl font-bold">Berikut adalah pesanan dari {name}</h2>
+                    <h2 className="text-xl ">Berikut adalah pesanan dari <span className="text-blue-700 font-black">{name}</span></h2>
+                    <h3 className="text-xl">Dari meja <span className="text-blue-700 font-black"> {localStorage.getItem("meja")}</span></h3>
                     <div className="overflow-y-auto max-h-[400px]">
                         <div className="">
                             <CartProduct 
@@ -133,9 +135,8 @@ const handleDelete = (key: string) => {
                 <h1 className="text-3xl mb-2 text-center font-bold">PESANAN</h1>
                 <div className=" w-[70%] flex flex-wrap justify-start m-auto gap-3 p-3 ">
                         {pesanan.map((pesan) => (
-                        <>
                             <CardList key={pesan.key}>
-                            <Button classname="absolute top-1 right-1 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-full hover:cursor-pointer" onClick={() => handleDelete(pesan.key)}>X</Button>
+                            <Button classname="absolute top-1 right-1 bg-red-500 hover:bg-red-700 text-white px-1  hover:cursor-pointer text-sm" onClick={() => handleDelete(pesan.key)}>X</Button>
                                 <CardList.Header key={pesan.key} text={pesan.key} />
                                 {pesan.values.map((value: any) => (
                                     <CardList.Body 
@@ -146,7 +147,6 @@ const handleDelete = (key: string) => {
                                     </CardList.Body>
                                 ))}
                             </CardList>
-                        </>
                         ))}    
                 </div>
             </div>
