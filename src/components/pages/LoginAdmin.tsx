@@ -12,15 +12,22 @@ export default function LoginAdmin() {
         e.preventDefault();
         const username = user.username;
         const password = user.password;
-        postDataLogin(username, password)
-        .then((res) => {
-            sessionStorage.setItem("token", res.token);
-            sessionStorage.setItem("email", res.user.email);
-            window.location.href = "/admindashboard";
-        })
-        .catch((err) => {
-            console.log(err.message);
-        })
+        if (username === "" || password === "") {
+            alert("masukan email dan password");
+            return;
+        }else{
+            postDataLogin(username, password)
+            .then((res) => {
+                console.log(res);
+                sessionStorage.setItem("token", res.token);
+                sessionStorage.setItem("email", res.user.email);
+                window.location.href = "/admindashboard";
+            })
+            .catch((err) => {
+                console.log(err.message);
+                alert("masukan email atau password yang benar");
+            })
+        }
 
         
     }
@@ -36,7 +43,7 @@ export default function LoginAdmin() {
                     <label htmlFor="password" className="block mb-2">Password</label>
                     <input type="password" name="password" placeholder="********" onChange={(e) => setUser({...user, password: e.target.value})} id="password" className="w-full px-3 py-2 border rounded" />
                 </div>
-                <Button onClick={() => {handleLogin}} classname="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</Button>
+                <Button onClick={() => {handleLogin}} classname="w-full hover:cursor-pointer bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded">Login</Button>
             </form>
         </div>
     );

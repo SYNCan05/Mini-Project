@@ -3,7 +3,7 @@
     classname?: string,
  }
 
-export default function CardList ({children, classname="w-[300px] p-5 text-white bg-blue-500 rounded relative"}: CardListProps) {
+export default function CardList ({children, classname="w-[300px] p-5 text-white bg-slate-900 rounded relative"}: CardListProps) {
     return(
         <div className={classname} >
             <div>

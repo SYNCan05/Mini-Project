@@ -27,7 +27,6 @@ const Products = () => {
   const [category, setCategory] = useState<string>("");
   const {handleSearch, isLoading, error} = SearchProduct();
   
-
   const handleAddToCart = (id: number) => {
     setCart((prevCart: any) => {
       const existingItem = prevCart.find((item : any) => item.id === id);
@@ -66,7 +65,7 @@ const Products = () => {
         setName("");
         setMeja("");
       }else{
-        alert("Masukan Nama Pemesan");
+        alert("lengkapi data yang belum diisi");
       }
   };
 
@@ -105,12 +104,13 @@ const Products = () => {
     );
   };
 
+  const totalHarga = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <>
     {/* NAVBAR */}
     <div className="w-full backdrop-blur-md sticky top-0 z-10">
-    <div className="flex w-[80%] mx-auto items-center justify-between  py-5">
+    <div className="flex w-[85%] max-md:w-full max-md:p-2 max-md:py-3 mx-auto items-center justify-between py-5 flex-wrap">
       <Form.Input
         text="text"
         placeholder="Search..."
@@ -140,7 +140,7 @@ const Products = () => {
       )}
 
       {/* CARD  PRODUCT */}
-      <div className="w-[80%] m-auto flex justify-between">
+      <div className="w-[80%] m-auto flex justify-between max-md:w-full max-md:flex-wrap-reverse max-md:p-2 max-md:items-center">
         <div className="w-[50%] flex flex-wrap max-md:w-full h-auto mb-5 gap-1">
           {data.length === 0 && !isLoading && (
             <div className="text-center font-bold text-2xl">
@@ -157,7 +157,7 @@ const Products = () => {
               />
               <Button
                 onClick={() => handleAddToCart(item.id)}
-                classname=" bg-blue-600 hover:bg-blue-500 text-white py-1 px-4 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded"
+                classname=" bg-slate-950 hover:bg-slate-500 text-white py-1 px-4 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded"
               >
                 Pilih
               </Button>
@@ -167,7 +167,7 @@ const Products = () => {
 
 
         {/* CART PRODUK */}
-        <div className="xl:fixed max-md:h-[500px] top-25 right-50 z-50 ">
+        <div className="xl:fixed xl:top-40 xl:right-50 z-50 max-md:z-0 ">
           <CartProduct>
             <CartProduct.Header text="Action" />
             { cart.map((item) => {
@@ -193,16 +193,18 @@ const Products = () => {
                       +
                     </Button>
                   </td>
-                  <Button
-                  classname="bg-red-600  hover:bg-red-500 text-white py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
-                  onClick={() => setCart(cart.filter((cartItem) => cartItem.id !== item.id))}
-                  >Hapus</Button>
+                  <td>
+                    <Button
+                    classname="bg-red-600  hover:bg-red-500 text-white py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
+                    onClick={() => setCart(cart.filter((cartItem) => cartItem.id !== item.id))}
+                    >Hapus</Button>
+                  </td>
                 </CartProduct.Body>
               ) : null; 
             })}
 
-
           </CartProduct>
+            <p className="text-right m-3 font-bold">total: ${totalHarga}</p>
             <div className={`flex flex-col m-3 ${cart.length <= 0 ? "hidden" : ""} `}>
               <label htmlFor="name">Nama :</label>
               <input
@@ -224,7 +226,7 @@ const Products = () => {
                 /> 
               </div>
             <Button 
-              classname="w-[100px] bg-blue-600 hover:bg-blue-500 text-white py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
+              classname="w-[100px] bg-slate-950 hover:bg-slate-500 text-white py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
               onClick={handleUploadCart}
             >
               Pesan

@@ -17,7 +17,7 @@ export const AdminDashboard = () => {
 
     useEffect(() =>{
         const token = sessionStorage.getItem("token");
-        if(!token || token === undefined){
+        if(token === "undefined"){
             window.location.href = "/auth/login";
         }
     })
@@ -51,7 +51,7 @@ export const AdminDashboard = () => {
     if (Array.isArray(parsedValue)) {
         return { key, values: parsedValue };
     } else {
-        return null; // Skip jika bukan array
+        return null; 
     }
     } catch (error) {
         // console.error(`Error parsing sessionStorage key: ${key}`, error);

@@ -2,8 +2,8 @@ import Card from "./Card"
 import Button from "../elements/Button"
 export default function Loading (){
     return(
-        <div className=" w-[80%] m-auto ">
-            <div className="w-[50%] flex flex-wrap max-md:w-full h-auto animate-pulse gap-1">
+        <div className=" w-[85%] max-md:w-full m-auto ">
+            <div className="w-[50%] flex flex-wrap max-md:w-full max-md:p-2 h-auto animate-pulse gap-1">
             <Card >
               <Card.Header>
                 <div className="w-full z-30 absolute h-[200px] bg-slate-300 " />
