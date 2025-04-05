@@ -25,7 +25,7 @@ export default function LoginAdmin() {
             })
             .catch((err) => {
                 console.log(err.message);
-                alert("masukan email atau password yang benar");
+                alert("masukan email atau password dengan benar");
             })
         }
 

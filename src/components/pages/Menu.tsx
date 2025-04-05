@@ -64,6 +64,7 @@ const Products = () => {
         setCart([]);
         setName("");
         setMeja("");
+        alert("pesanan anda dalam antrian")
       }else{
         alert("lengkapi data yang belum diisi");
       }
