@@ -36,8 +36,8 @@ export default function LoginAdmin() {
             <form onSubmit={(e) => {handleLogin(e)}} className="w-96 px-10 py-10 bg-white shadow-xl shadow-gray-400 rounded">
                 <h2 className="text-2xl font-bold mb-5">Login</h2>
                 <div className="mb-5">
-                    <label htmlFor="username" className="block mb-2">Username</label>
-                    <input type="text" placeholder="Jhon Doe" name="username" id="username" autoComplete="off" onChange={(e) => setUser({...user, username: e.target.value})} className="w-full px-3 py-2 border rounded" />
+                    <label htmlFor="username" className="block mb-2">Email</label>
+                    <input type="text" placeholder="jhondoe@email.com" name="username" id="username" autoComplete="off" onChange={(e) => setUser({...user, username: e.target.value})} className="w-full px-3 py-2 border rounded" />
                 </div>
                 <div className="mb-5">
                     <label htmlFor="password" className="block mb-2">Password</label>
