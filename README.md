@@ -1,15 +1,21 @@
-# React + TypeScript + Vite
+# Mini Project WPU -Muhammad sidiq 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Perkenalkan Nama saya Muhammad sidiq, saya masih pemula dalam belajar React js 
+dan alasan saya mengikuti WPU Ramadhan camp adalah untuk mempelajari tentang react lebih dalam.
 
-Currently, two official plugins are available:
+Ini adalah Tugas Mini Project yang diberikan oleh mentor2 WPU Course.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Di dalam website ada 2 role yang diambil yaitu admin dan pelanggan, untuk tampilan utama akan langsung  
+diakses oleh pelanggan, untuk tampilan admin anda bisa menambahkan /auth/login pada url untuk login ke dashboard admin
+untuk admin bisa login dengan akun berikut 
 
-## Expanding the ESLint configuration
+- email    : admin@wpucafe.com
+- password : Admin123
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+
+didalam dashboard admin terdapat beberapa fitur seperti, upload pesanan yang sudah dipesan oleh user ke dalam antrian pesanan,
+jika pesanan sudah diterima oleh pelanggan maka admin bisa menghapus pesanan tersebut 
+
 
 ```js
 npm install
@@ -18,24 +24,4 @@ npm install
 npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
