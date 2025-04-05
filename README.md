@@ -7,13 +7,13 @@ Ini adalah Tugas Mini Project yang diberikan oleh mentor2 WPU Course.
 
 Di dalam website terdapat 2 role yaitu admin dan pelanggan, untuk tampilan utama akan langsung  
 diakses oleh pelanggan, untuk tampilan admin anda bisa menambahkan [/auth/login] pada url untuk login ke dashboard admin
-untuk admin bisa login dengan akun berikut 
+dan login dengan akun berikut 
 
 - email    : admin@wpucafe.com
 - password : Admin123
 
 
-didalam dashboard admin terdapat beberapa fitur seperti, upload pesanan yang sudah dipesan oleh user ke dalam antrian pesanan,
+Di dalam dashboard admin terdapat beberapa fitur seperti, upload pesanan yang sudah dipesan oleh user ke dalam antrian pesanan,
 jika pesanan sudah diterima oleh pelanggan maka admin bisa menghapus pesanan tersebut 
 
 Untuk halaman utama menampilkan berbagai menu yang disediakan oleh cafe tersebut dan pada bagian atas terdapat kategori untuk memudahkan pelanggan dalam mencari menu ataupun bisa menggunakan search input. Pelanggan dapat memilih menu dengan menekan tombol PILIH

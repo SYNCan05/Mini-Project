@@ -18,7 +18,7 @@ function Header(props: {image?: string, children?: React.ReactNode}){
 function Body (props: {title: any, price: any, description: any}){
     return(
         <div className="w-[300px] flex flex-col gap-2">
-            <div className="text-2xl font-extrathin line-clamp-1 ">{props.title}</div>
+            <div className="text-2xl font-extrathin line-clamp-1 max-sm:text-sm max-sm:font-bold ">{props.title}</div>
             <div className="">{props.price}</div>
             <div className="line-clamp-3">{props.description}</div>
         </div>

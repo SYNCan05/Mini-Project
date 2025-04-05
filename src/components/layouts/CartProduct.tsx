@@ -6,7 +6,7 @@ interface Props {
     classname?: string
 }
 // import { SetCart } from "../../service/SetCart"
-export default function CartProduct({children, classname="w-[400px] table-auto border-collapse border shadow-md rounded-lg"}: Props) {
+export default function CartProduct({children, classname="w-[400px] max-md:w-[350px] text-xs table-auto border-collapse border shadow-md rounded-lg"}: Props) {
     return (
         <div className="relative">
             <table className={`${classname}`}>

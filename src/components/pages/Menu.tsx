@@ -109,14 +109,14 @@ const Products = () => {
   return (
     <>
     {/* NAVBAR */}
-    <div className="w-full backdrop-blur-md sticky top-0 z-10">
-    <div className="flex w-[85%] max-md:w-full max-md:p-2 max-md:py-3 mx-auto items-center justify-between py-5 flex-wrap">
+    <div className="w-full backdrop-blur-md sticky top-0 z-10 max-sm:text-xs">
+    <div className="flex w-[85%] max-md:w-full max-md:p-2 max-md:py-3 mx-auto items-center justify-evenly py-5 flex-wrap">
       <Form.Input
         text="text"
         placeholder="Search..."
         value={query}
         onchange={(e) => setQuery(e.target.value)}
-        classname="rounded-md h-[40px] w-[400px] p-2  max-md:w-full max-md:mb-5 focus:outline-none border-1 border-gray-300 "
+        classname="rounded-md h-[40px] w-[400px] p-2  max-md:w-full max-md:mb-5 focus:outline-none border-1  border-gray-300 "
         />
         <RadioButton>
           <RadioButton.Body  checked={category === ""} onChange={() => setCategory("")}  text="All"/>
@@ -194,8 +194,8 @@ const Products = () => {
             })}
 
           </CartProduct>
-            <p className="text-right m-3 font-bold">total: ${totalHarga}</p>
-            <div className={`flex flex-col m-3 ${cart.length <= 0 ? "hidden" : ""} `}>
+            <p className="text-right max-sm:m-0 m-3 font-bold">total: ${totalHarga}</p>
+            <div className={`flex flex-col m-3 ${cart.length <= 0 ? "hidden" : ""} max-sm:text-sm `}>
               <label htmlFor="name">Nama :</label>
               <input
                 type="text"
@@ -216,7 +216,7 @@ const Products = () => {
                 /> 
               </div>
             <Button 
-              classname="w-[100px] bg-slate-950 hover:bg-slate-500 text-white py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
+              classname="w-[100px] bg-slate-950 hover:bg-slate-500 text-white max-sm:text-sm py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
               onClick={handleUploadCart}
             >
               Pesan

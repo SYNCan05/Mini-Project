@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Products from './components/pages/Products';
+import Products from './components/pages/Menu';
 import { AdminDashboard } from './components/pages/AdminDashboard';
 import LoginAdmin from './components/pages/LoginAdmin';
 import Page404 from './components/pages/Page404';
