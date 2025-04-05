@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Card from "../layouts/Card";
 import Button from "../elements/Button";
-import { FetchProducts } from "../../service/FetchProduct";
+// import { FetchProducts } from "../../service/FetchProduct";
 import CartProduct from "../layouts/CartProduct";
 import Form from "../layouts/Form";
-import { SearchProduct } from "../../service/SearchProduct";
+import { FetchProduct } from "../../service/FetchProduct";
 import Loading from "../layouts/Loading";
 import RadioButton from "../elements/RadioButton";
 
@@ -19,13 +19,13 @@ interface CartItem extends Product {
 }
 
 const Products = () => {
-  const { data, setData } = FetchProducts();
+  // const { data, setData } = FetchProducts();
   const [query, setQuery] = useState("");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [name, setName] = useState<string>("");
   const [meja, setMeja] = useState<string>("");
   const [category, setCategory] = useState<string>("");
-  const {handleSearch, isLoading, error} = SearchProduct();
+  const {handleSearch, isLoading, error, setData, data} = FetchProduct();
   
   const handleAddToCart = (id: number) => {
     setCart((prevCart: any) => {
@@ -129,18 +129,8 @@ const Products = () => {
       </div>
       </div>
 
-      {isLoading && (
-        <div>
-          <Loading />
-          <Loading />
-          <Loading />
-          <Loading />
-
-        </div>
-      )}
-
       {/* CARD  PRODUCT */}
-      <div className="w-[80%] m-auto flex justify-between max-md:w-full max-md:flex-wrap-reverse max-md:p-2 max-md:items-center">
+      <div className="w-[85%] m-auto flex justify-between max-md:w-full max-md:flex-wrap-reverse max-md:p-2 max-md:items-center">
         <div className="w-[50%] flex flex-wrap max-md:w-full h-auto mb-5 gap-1">
           {data.length === 0 && !isLoading && (
             <div className="text-center font-bold text-2xl">
@@ -233,8 +223,16 @@ const Products = () => {
             </Button>
         </div>
         {/* END CART */}
-
       </div>
+      {isLoading && (
+        <div>
+          <Loading />
+          <Loading />
+          <Loading />
+          <Loading />
+
+        </div>
+      )}
     </>
   );
 };
