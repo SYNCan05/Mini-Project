@@ -6,7 +6,7 @@ dan alasan saya mengikuti WPU Ramadhan camp adalah untuk mempelajari tentang rea
 Ini adalah Tugas Mini Project yang diberikan oleh mentor2 WPU Course.
 
 Di dalam website ada 2 role yang diambil yaitu admin dan pelanggan, untuk tampilan utama akan langsung  
-diakses oleh pelanggan, untuk tampilan admin anda bisa menambahkan /auth/login pada url untuk login ke dashboard admin
+diakses oleh pelanggan, untuk tampilan admin anda bisa menambahkan [/auth/login] pada url untuk login ke dashboard admin
 untuk admin bisa login dengan akun berikut 
 
 - email    : admin@wpucafe.com
