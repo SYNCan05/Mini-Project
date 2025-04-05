@@ -1,12 +1,12 @@
 # Mini Project WPU -Muhammad sidiq 
 
 Perkenalkan Nama saya Muhammad sidiq, saya masih pemula dalam belajar React js 
-dan alasan saya mengikuti WPU Ramadhan camp adalah untuk mempelajari tentang react lebih dalam.
+dan itu menjadi salah satu alasan saya mengikuti WPU Ramadhan camp.
 
 Ini adalah Tugas Mini Project yang diberikan oleh mentor2 WPU Course.
 
-Di dalam website ada 2 role yang diambil yaitu admin dan pelanggan, untuk tampilan utama akan langsung  
-diakses oleh pelanggan, untuk tampilan admin anda bisa menambahkan /auth/login pada url untuk login ke dashboard admin
+Di dalam website terdapat 2 role yaitu admin dan pelanggan, untuk tampilan utama akan langsung  
+diakses oleh pelanggan, untuk tampilan admin anda bisa menambahkan [/auth/login] pada url untuk login ke dashboard admin
 untuk admin bisa login dengan akun berikut 
 
 - email    : admin@wpucafe.com
