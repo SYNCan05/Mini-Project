@@ -11,7 +11,7 @@ const RadioButton = (props:{children: React.ReactNode}) => {
     return (
     <div className="p-4 max-sm:p-0 max-sm:w-full">
       <div className="w-full md:hidden flex items-center justify-center cursor-pointer bg-slate-200" onClick={() => setBlock(!block)}>
-        {block ? <img src="../src/assets/icons/arrowhead-up.png" alt="down" width={20} /> : <img src="../src/assets/icons/down.png" alt="up" width={20} />}
+        {block ? <img src="../../src/assets/icons/arrowhead-up.png" alt="down" width={20} /> : <img src="../../src/assets/icons/down.png" alt="up" width={20} />}
         
       </div>
       <div className={`flex w-full ${block ? "max-sm:flex-col" : "max-sm:hidden"} gap-7 max-sm:gap-2 max-sm:mt-2 items-center justify-between flex-wrap`}>

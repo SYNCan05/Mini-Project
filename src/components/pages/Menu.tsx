@@ -195,7 +195,7 @@ const Products = () => {
 
           </CartProduct>
             <p className="text-right max-sm:m-0 m-3 font-bold">total: ${totalHarga}</p>
-            <div className={`flex flex-col m-3 ${cart.length <= 0 ? "hidden" : ""} max-sm:text-sm `}>
+            <div className={`flex flex-col m-3 ${cart.length <= 0 ? "hidden" : ""} max-sm:text-sm`}>
               <label htmlFor="name">Nama :</label>
               <input
                 type="text"
