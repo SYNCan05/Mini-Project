@@ -57,7 +57,7 @@ const Products = () => {
           : null;
       })
       .filter(Boolean);
-      if(name.length > 0){ 
+      if(name.length > 0 && meja.length > 0){
         localStorage.setItem("name", name);
         localStorage.setItem("meja", meja);
         localStorage.setItem("cart", JSON.stringify(dataCart));
@@ -212,8 +212,9 @@ const Products = () => {
                 value={meja}
                 required
                 onChange={(e) => setMeja(e.target.value)}
-                className={`rounded-md p-2 w-60 max-md:w-full max-md:mb-5 focus:outline-none border-1 border-gray-300 bg-white`}
-                /> 
+                className={`rounded-md p-2 w-60 max-md:w-full max-md:mb-5 focus:outline-none border-1 border-gray-300 bg-white ${meja.length === 0 ? "border-red-500" : ""} `}
+                />
+                {meja.length === 0 && <span className="text-red-500 text-sm">*Meja harus diisi</span>}
               </div>
             <Button 
               classname="w-[100px] bg-slate-950 hover:bg-slate-500 text-white max-sm:text-sm py-1 px-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-2"
