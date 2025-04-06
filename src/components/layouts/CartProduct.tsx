@@ -22,7 +22,7 @@ const Header = (props:{text:string}) => {
             <tr>
                 <th className="p-3 text-left">Produk</th>
                 <th className="p-3 text-left">Harga</th>
-                <th className="p-3 text-left">Kuantitas</th>
+                <th className="p-3 text-center">Jumlah</th>
                 <th className="p-3 text-left">{props.text}</th>
             </tr>
         </thead>

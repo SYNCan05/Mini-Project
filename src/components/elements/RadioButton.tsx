@@ -34,7 +34,7 @@ const Body = ({checked, onChange, classname="hidden peer", text}: RadioButtonPro
             onChange={onChange}
             className={classname}
           />
-          <div className="h-auto flex items-center justify-center peer-checked:text-white peer-checked:bg-slate-950 border border-gray-950 px-5 py-1 max-sm:w-[350px]">
+          <div className="h-auto flex items-center justify-center peer-checked:text-white peer-checked:bg-slate-950 border-[0.5px] border-gray-950 px-5 py-1 max-sm:w-[350px]">
             <span>{text}</span>
           </div>
         </label>

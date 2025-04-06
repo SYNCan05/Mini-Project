@@ -106,7 +106,7 @@ const handleDelete = (key: string) => {
                                     
                                     <CartProduct.Body 
                                     title={pesan.name} 
-                                    price={pesan.price} 
+                                    price={`$ ${pesan.price}`} 
                                     key={pesan.id} 
                                     >
                                             <td className="p-3 text-center">
@@ -117,6 +117,7 @@ const handleDelete = (key: string) => {
                                 }   
                                 
                             </CartProduct>
+                            <h1 className="text-xl font-bold">Total : $ {pesan.reduce((total, pesan) => total + pesan.price * pesan.quantity, 0)}</h1>
                         </div>
                     </div>
                     </>

@@ -232,7 +232,6 @@ const Products = () => {
           <Loading />
           <Loading />
           <Loading />
-
         </div>
       )}
     </>
