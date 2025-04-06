@@ -18,11 +18,7 @@ Di dalam dashboard admin terdapat beberapa fitur seperti, upload pesanan yang su
 Untuk halaman utama menampilkan berbagai menu yang disediakan oleh cafe tersebut dan pada bagian atas terdapat kategori untuk memudahkan pelanggan dalam mencari menu ataupun bisa menggunakan search input. Pelanggan dapat memilih menu dengan menekan tombol PILIH
 di dalam card menu, Ketika pelanggan memilih menu maka menu akan masuk ke dalam cart. Di dalam cart, pelanggan dapat menambahkan maupun mengurangi jumlah menu, setelah semua selesai maka pelanggan diwajibkan mengisi nama dan nomor meja sesuai nomor yang diberikan oleh kasir, setelah itu tekan tombol PESAN untuk memesan dan otomatis pesanan akan diproses sesuai antrian.  
 
-```command prompt
-npm install
-```
-```command prompt
-npm run dev
-```
+[vercel](https://miniproject-sidiq.vecel.app)
+[link](http://103.76.120.140:4173/)
 
 
