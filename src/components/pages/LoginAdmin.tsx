@@ -32,6 +32,7 @@ export default function LoginAdmin() {
         
     }
     return (
+        
         <div className="w-full h-screen flex justify-center items-center z-50 absolute top-0 left-0 bg-white">
             <form onSubmit={(e) => {handleLogin(e)}} className="w-96 px-10 py-10 bg-white shadow-xl shadow-gray-400 rounded">
                 <h2 className="text-2xl font-bold mb-5">Login</h2>

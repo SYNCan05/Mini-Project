@@ -12,6 +12,7 @@ interface pesan {
 export const AdminDashboard = () => {
     const [pesan, setPesan] = useState<pesan[]>([]);
     const [pesanan, setPesanan] = useState<{ key: string; values: any }[]>([]);
+
     const email = sessionStorage.getItem("email");
     const name = localStorage.getItem("name");
 
@@ -91,7 +92,7 @@ const handleDelete = (key: string) => {
                 <div className="flex flex-col gap-3">
                 <h1 className="text-2xl font-black ">Selamat Datang, {email}</h1>
                 {pesan.length > 0 ? (
-                    <>
+                <div className="flex flex-col gap-3 max-sm:w-full max-sm:items-center max-sm:justify-center">
                     <h2 className="text-xl ">Berikut adalah pesanan dari <span className="text-blue-700 font-black">{name}</span></h2>
                     <h3 className="text-xl">meja No.<span className="text-blue-700 font-black">{localStorage.getItem("meja")}</span></h3>
                     <div className="overflow-y-auto max-h-[400px]">
@@ -120,10 +121,10 @@ const handleDelete = (key: string) => {
                             <h1 className="text-xl font-bold">Total : $ {pesan.reduce((total, pesan) => total + pesan.price * pesan.quantity, 0)}</h1>
                         </div>
                     </div>
-                    </>
+                </div>
                     
                 ) :  (
-                    <h2 className="text-xl font-bold text-red-600">Belum ada pesanan</h2>
+                    <h2 className="text-xl font-bold max-sm:text-center text-red-600">Belum ada pesanan</h2>
                 )}
                         <Button
                     classname=" bg-blue-600 hover:bg-blue-500 text-white py-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-3 w-[200px]"
