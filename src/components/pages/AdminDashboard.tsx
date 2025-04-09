@@ -1,159 +1,198 @@
 import { useEffect, useState } from "react";
 import Button from "../elements/Button";
 import CartProduct from "../layouts/CartProduct";
-import CardList from "../layouts/CardListOrder";
+// import CardList from "../layouts/CardListOrder";
 
-interface pesan {
-    id: number,
-    name: string,
-    price: number,
-    quantity: number
+interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
 }
+
+interface PesananData {
+  key: string;
+  values: CartItem[];
+  done: boolean;
+}
+
 export const AdminDashboard = () => {
-    const [pesan, setPesan] = useState<pesan[]>([]);
-    const [pesanan, setPesanan] = useState<{ key: string; values: any }[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [orders, setOrders] = useState<PesananData[]>([]);
 
-    const email = sessionStorage.getItem("email");
-    const name = localStorage.getItem("name");
+  const email = sessionStorage.getItem("email");
+  const customerName = localStorage.getItem("name");
+  const tableNumber = localStorage.getItem("meja");
 
-    useEffect(() =>{
-        const token = sessionStorage.getItem("token");
-        if(!token || token === "undefined"){
-            window.location.href = "/auth/login";
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    if (!token || token === "undefined") {
+      window.location.href = "/auth/login";
+    }
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+      setCartItems(cart);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const storedKeys = Object.keys(sessionStorage);
+    const parsed = storedKeys.map((key) => {
+      try {
+        const value = sessionStorage.getItem(key);
+        const parsedValue = value ? JSON.parse(value) : null;
+
+        if (Array.isArray(parsedValue)) {
+          return { key, values: parsedValue, done: false };
         }
-    })
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-            setPesan(cart);
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
-
-    
-    
-    const handleLogout = () => {
-        sessionStorage.removeItem("token");
-        sessionStorage.removeItem("email");
-        window.location.href = "/auth/login";
-    }
-    
-    
-    useEffect(() => {
-    const showUi = () => {
-    
-        const storedKeys = Object.keys(sessionStorage);
-        const parsedData = storedKeys.map((key) => {
-            try {
-                const value = sessionStorage.getItem(key);
-                const parsedValue = value ? JSON.parse(value) : null;
-                
-    if (Array.isArray(parsedValue)) {
-        return { key, values: parsedValue };
-    } else {
-        return null; 
-    }
-    } catch (error) {
-        // console.error(`Error parsing sessionStorage key: ${key}`, error);
+      } catch {
         return null;
-    }
-    }).filter(Boolean) as { key: string; values: string[] }[];
+      }
+      return null;
+    });
 
-    setPesanan(parsedData);      
-    }
-    showUi();
-    }, []);
-const handlePesanan = () =>{
-    const name = localStorage.getItem("name");
-    const meja = localStorage.getItem("meja");
+    setOrders(parsed.filter(Boolean) as PesananData[]);
+  }, []);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("email");
+    window.location.href = "/auth/login";
+  };
+
+  const handleSubmitOrder = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    if (cart.length > 0) {
-        localStorage.removeItem("cart");
-        localStorage.removeItem("name");
-        localStorage.removeItem("meja");
-        sessionStorage.setItem("cart-" + name + "-" + meja , JSON.stringify(cart));
-        window.location.reload();
-    } else{
-         alert("tidak ada pesanan")
-    }    
-}
+    if (cart.length === 0) {
+      alert("Tidak ada pesanan");
+      return;
+    }
 
-const handleDelete = (key: string) => {
+    const storageKey = `cart-${customerName}-${tableNumber}`;
+    sessionStorage.setItem(storageKey, JSON.stringify(cart));
+
+    localStorage.removeItem("cart");
+    localStorage.removeItem("name");
+    localStorage.removeItem("meja");
+
+    window.location.reload();
+  };
+
+  const handleDeleteOrder = (key: string) => {
     sessionStorage.removeItem(key);
     window.location.reload();
-}
+  };
 
-    return (
-        <div className="w-full flex flex-col gap-20 justify-center font-thin items-center relative py-5">
-            <div className="absolute top-5 right-5">
-                <Button classname="bg-red-500 hover:bg-red-700 cursor-pointer hover:scale-95 transition ease-in-out duration-200 text-white font-bold py-1 px-4 rounded" children="Logout" onClick={handleLogout} />
-            </div>
-                <div className="flex flex-col gap-3">
-                <h1 className="text-2xl font-black ">Selamat Datang, {email}</h1>
-                {pesan.length > 0 ? (
-                <div className="flex flex-col gap-3 max-sm:w-full max-sm:items-center max-sm:justify-center">
-                    <h2 className="text-xl ">Berikut adalah pesanan dari <span className="text-blue-700 font-black">{name}</span></h2>
-                    <h3 className="text-xl">meja No.<span className="text-blue-700 font-black">{localStorage.getItem("meja")}</span></h3>
-                    <div className="overflow-y-auto max-h-[400px]">
-                        <div className="">
-                            <CartProduct 
-                             classname="w-[400px] table-auto border-collapse border shadow-md rounded-lg"
-                             >
-                                <CartProduct.Header
-                                    text=""
-                                    />
-                                {pesan.map((pesan) => (
-                                    
-                                    <CartProduct.Body 
-                                    title={pesan.name} 
-                                    price={`$ ${pesan.price}`} 
-                                    key={pesan.id} 
-                                    >
-                                            <td className="p-3 text-center">
-                                                {pesan.quantity}
-                                            </td>
-                                        </CartProduct.Body>
-                                    ))
-                                }   
-                                
-                            </CartProduct>
-                            <h1 className="text-xl font-bold">Total : $ {pesan.reduce((total, pesan) => total + pesan.price * pesan.quantity, 0)}</h1>
-                        </div>
-                    </div>
-                </div>
-                    
-                ) :  (
-                    <h2 className="text-xl font-bold max-sm:text-center text-red-600">Belum ada pesanan</h2>
-                )}
-                        <Button
-                    classname=" bg-blue-600 hover:bg-blue-500 text-white py-2 hover:scale-95 transition ease-in-out duration-200 hover:cursor-pointer rounded m-3 w-[200px]"
-                    onClick={() => handlePesanan()}
-                >
-                    upload pesanan
-                </Button>
-                    
-                </div>
-            <div className="w-full">
-                <h1 className="text-3xl mb-2 text-center font-bold">PESANAN</h1>
-                <div className=" w-[70%] flex flex-wrap justify-start m-auto gap-3 p-3 ">
-                        {pesanan.map((pesan) => (
-                            <CardList key={pesan.key}>
-                            <Button classname="absolute top-1 right-1 bg-red-500 hover:bg-red-700 text-white px-1  hover:cursor-pointer text-sm" onClick={() => handleDelete(pesan.key)}>X</Button>
-                                <CardList.Header key={pesan.key} text={pesan.key} />
-                                {pesan.values.map((value: any) => (
-                                    <CardList.Body 
-                                    key={value.id}
-                                    title={value.name} 
-                                    >
-                                        <p>{value.quantity}</p>
-                                    </CardList.Body>
-                                ))}
-                            </CardList>
-                        ))}    
-                </div>
-            </div>
-                
-            </div>
+  const toggleDone = (key: string) => {
+    setOrders((prev) =>
+      prev.map((order) =>
+        order.key === key ? { ...order, done: !order.done } : order
+      )
     );
+  };
+
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  return (
+    <div className="w-full flex flex-col gap-16 justify-center items-center py-10 bg-gray-100 min-h-screen">
+      <div className="absolute top-5 right-5">
+        <Button
+          classname="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow"
+          onClick={handleLogout}
+        >
+          Logout
+        </Button>
+      </div>
+
+      <div className="bg-white p-6 rounded-lg shadow-md w-[90%] max-w-2xl">
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">
+          Selamat Datang, <span className="text-blue-600">{email}</span>
+        </h1>
+
+        {cartItems.length > 0 ? (
+          <div className="space-y-3">
+            <p className="text-gray-600">
+              Pesanan dari <span className="font-bold text-blue-700">{customerName}</span>,
+              meja <span className="font-bold text-blue-700">{tableNumber}</span>
+            </p>
+
+            <CartProduct classname="w-full border shadow-sm rounded-lg overflow-hidden">
+              <CartProduct.Header text="" />
+              {cartItems.map((item) => (
+                <CartProduct.Body
+                  key={item.id}
+                  title={item.name}
+                  price={`$ ${item.price}`}
+                >
+                  <td className="p-3 text-center">{item.quantity}</td>
+                </CartProduct.Body>
+              ))}
+            </CartProduct>
+
+            <p className="text-right font-semibold text-lg text-gray-800">
+              Total: $ {totalPrice}
+            </p>
+
+            <Button
+              classname="bg-blue-600 hover:bg-blue-500 text-white py-2 w-full rounded-md shadow hover:scale-95 transition"
+              onClick={handleSubmitOrder}
+            >
+              Upload Pesanan
+            </Button>
+          </div>
+        ) : (
+          <p className="text-center text-red-600 font-semibold">
+            Belum ada pesanan
+          </p>
+        )}
+      </div>
+
+      <div className="w-[90%]">
+        <h2 className="text-2xl font-bold text-center text-gray-800 mb-4">Antrian Pesanan</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {orders.map((order) => (
+            <div
+              key={order.key}
+              className={`relative bg-white p-4 rounded-lg shadow cursor-pointer transition border-2 ${
+                order.done ? "border-green-500" : "border-yellow-400"
+              }`}
+              onClick={() => toggleDone(order.key)}
+            >
+              <Button
+                classname="absolute top-2 right-2 bg-red-500 hover:bg-red-700 text-white text-xs px-2 py-1 rounded"
+                onClick={() => {
+                  handleDeleteOrder(order.key);
+                }}
+              >
+                Hapus
+              </Button>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">
+                {order.key}
+              </h3>
+              <div className="space-y-1">
+                {order.values.map((item) => (
+                  <div
+                    key={item.id}
+                    className="flex justify-between text-sm text-gray-700"
+                  >
+                    <span>{item.name}</span>
+                    <span>{item.quantity}</span>
+                  </div>
+                ))}
+              </div>
+              <p className={`mt-2 text-sm font-semibold ${order.done ? "text-green-600" : "text-yellow-600"}`}>
+                Status: {order.done ? "Selesai" : "Belum Selesai"}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
